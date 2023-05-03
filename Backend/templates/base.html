@@ -1,0 +1,120 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} {% endblock %}</title>
+    
+    <link rel="icon" href="{%static '/logo.svg' %}" type="image/icon type">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- Fontawesome -->
+    <script src="https://kit.fontawesome.com/5c2d098959.js" crossorigin="anonymous"></script>
+
+    <!-- Loading Base CSS -->
+    <link rel="stylesheet" href="{%static '/css/login_and_base.css' %}">
+
+    <!-- Loading additional CSS -->
+    {% block css %}
+    {% endblock %}
+
+    <style>
+        .green-msg:hover{
+            -webkit-box-shadow: 0px 0px 27px -2px rgba(0,102,34,1);
+            -moz-box-shadow: 0px 0px 27px -2px rgba(0,102,34,1);
+            box-shadow: 0px 0px 27px -2px rgba(0,102,34,1);
+        }
+
+        .red-msg:hover{
+            -webkit-box-shadow: 0px 0px 27px -2px rgba(194,0,84,0.74);
+            -moz-box-shadow: 0px 0px 27px -2px rgba(194,0,84,0.74);
+            box-shadow: 0px 0px 27px -2px rgba(194,0,84,0.74);
+        }
+    </style>
+
+</head>
+<body background="{% block bg %}{% endblock %}" style="background-repeat: no-repeat; background-size: cover; background-position: center;" class="bg-slate-900">
+    <nav class="text-md sticky top-0 flex flex-row gap-3 px-3 py-2 justify-between shadow-md h-full w-full bg-white-900 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-0 items-center" style="z-index: 99999;">
+        <div class="sm:hidden text-white px-2" onclick="showMobileNav()">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <div class="max-sm:max-md:items-center items-center flex flex-row gap-2 text-white">
+            <img src="{%static '/logo.svg' %}" style="width:20px;height:20px;">
+            <a href="/" style="font-family: 'Nunito', sans-serif; font-family: 'Quicksand', sans-serif;">Virality Toolkit</a>
+        </div>
+        <div class="font-sans flex flex-row gap-3 items-center text-white">
+            <a href="/" class="max-sm:max-md:hidden" style="font-family: 'Nunito', sans-serif; font-family: 'Quicksand', sans-serif;">Home</a>
+            <a href="#" class="max-sm:max-md:hidden" style="font-family: 'Nunito', sans-serif; font-family: 'Quicksand', sans-serif;">Try</a>
+            <a href="#" class="max-sm:max-md:hidden" style="font-family: 'Nunito', sans-serif; font-family: 'Quicksand', sans-serif;">About</a>
+
+            {% if user.is_authenticated %}
+                <a href="/accounts/logout" class="border px-2 py-1 rounded-md bg-opacity-0 bg-red-400 border-opacity-80 border-[2.125px] border-red-400 duration-150 active:bg-opacity-50" style="font-family: 'Nunito', sans-serif; font-family: 'Quicksand', sans-serif;"><i class="fa-solid fa-user-check"></i> {% if user.first_name == ""%}{{ user.email }}{% else %}{{ user.first_name }}{% endif %}</a>
+            {% else %}
+                <a href="/accounts/login" class="border border-0 px-2 py-1 rounded-md bg-opacity-80 border-opacity-80 border-red-400 bg-red-400 shadow-md shadow-red-400/50 duration-150 hover:shadow-xl hover:shadow-red-400/50 active:bg-opacity-100" style="font-family: 'Nunito', sans-serif; font-family: 'Quicksand', sans-serif;"><i class="fa-solid fa-user"></i> Login</a>
+            {% endif %}
+        </div>
+        <div class="items-center text-sm text-white top-14 px-3 py-2 rounded-md bg-clip-padding bg-slate-900 text-opacity-80 gap-4 border-opacity-70 bg-opacity-70 shadow-[0px_0px_10px_5px_#5a67d8] shadow-cyan-300/20" style="position: absolute; display: none;" id="mobileNav">
+            <a href="#" style="font-family: 'Nunito', sans-serif; font-family: 'Quicksand', sans-serif;">Home</a>
+            <a href="#" style="font-family: 'Nunito', sans-serif; font-family: 'Quicksand', sans-serif;">Try</a>
+            <a href="#" style="font-family: 'Nunito', sans-serif; font-family: 'Quicksand', sans-serif;">About</a>
+        </div>
+    </nav>
+
+
+    <div class="max-sm:max-md:px-5 px-16 py-5 text-white" style="font-family: 'Quicksand', sans-serif;">
+
+
+        {% for message in messages %}
+            {% if 'error' in message.tags %}
+            <h2 id="dismiss" class="red-msg absolute bg-rose-800 rounded-lg py-1 px-3 bg-opacity-70 text-center text-md pt-2 w-1/2" style="transition-duration: 300ms; left: 0%; right: 0%; margin-left: auto; margin-right: auto; z-index: 10; top: 10vh;"><i class="fa-solid fa-triangle-exclamation"></i> {{ message }} <i class="fa-solid fa-xmark" onclick="messageDismiss()"></i></h2>
+            {% elif 'success' in message.tags %}
+            <h2 id="dismiss" class="green-msg absolute bg-green-800 rounded-lg py-1 my-1 px-3 bg-opacity-70 text-center max-w-max text-md pt-2" style="transition-duration: 300ms; left: 0%; right: 0%; margin-left: auto; margin-right: auto; z-index: 10; top: 10vh;"><i class="fa-solid fa-circle-check"></i> {{ message }} <i class="fa-solid fa-xmark" onclick="messageDismiss()"></i></h2>
+            {% endif %}
+        {% endfor %}
+
+
+
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    {% block js %}
+    {% endblock %}
+
+    <script>
+        function showMobileNav()
+        {
+            var btn = document.getElementById("mobileNav");
+        if (window.getComputedStyle(btn).display === "none") {
+            btn.style.display = "flex";
+        } else {
+            btn.style.display = "none";
+        }}
+
+        function messageDismiss()
+        {
+            var btn = document.getElementById("dismiss");
+            btn.style.top = "0"
+            btn.style.display = "none"
+        }
+    </script>
+
+    <footer class="bg-neutral-900 text-white text-center py-6 relative bottom-0 left-0 w-full text-sm rounded-md" style="{% block footerstyle %}{% endblock %}">
+    <div>
+        Copyright© Virality Toolkit!
+    </div>
+    <div>
+        <a href="https://www.freepik.com/free-photo/content-service-internet-online-editorial-connection_1235345.htm#query=Phone%20with%20youtube%20on%20the%20screen%20while%20an%20person%20using%20a%20computer&position=3&from_view=search&track=ais">Hero Image by ijeab</a> on Freepik
+    </div>
+</footer>
+</body>
+</html>

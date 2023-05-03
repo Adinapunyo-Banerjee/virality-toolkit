@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %} Thumbnail AI {% endblock %}
+{% block css %}<link rel="stylesheet" href="{%static '/css/predict1.css' %}">{% endblock %}
+
+{% block bg %}{%static '/images/yt3.jpg' %}{% endblock %}
+
+
+{% block content %}
+    <div class="max-sm:max-md:px-5 px-16 py-5 mt-7 text-white" style="font-family: 'Quicksand', sans-serif;">
+        <div class="flex flex-col gap-[20vh]">
+            <div class="rounded-2xl top-0 flex flex-col max-sm:max-md:px-2 py-5 justify-between h-full w-full bg-cyan-700 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-10 items-center shadow-cyan-300/20 shadow-[0px_0px_10px_5px_#5a67d8]">
+                <div class="flex flex-col items-center gap-10 py-10 max-sm:max-md:gap-1">
+                    <h1 class="text-3xl">Thumbnail performance AI - Proteus</h1>
+                    <form class="flex max-sm:max-md:flex-col flex-row items-center px-16 py-6 gap-3 h-96 max-sm:max-md:py-2" action="/predict/" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <div class="max-sm:max-md:py-5 input-div border-2 border-dashed rounded-md flex justify-center w-full h-[200px] align-center text-center relative" id="drag_and_drop">
+                            <p class="input-change my-auto">Drag & drop your thumbnail here or <strong>Browse</strong></p>
+                            <input type="file" class="file w-full h-full absolute opacity-0 cursor-pointer" accept="image/*" name="thumb" required="" id="id_thumb">
+                        </div>
+
+                        <div id="additional_data" class="flex flex-col gap-3 max-sm:max-md:gap-1">
+                            <select name="category" required id="id_category" class="max-sm:w-auto w-full text-black mt-2 px-2 py-1 rounded-md border-opacity-100 focus:outline-dashed outline-[3px] outline-cyan-500/50">
+                                <option value="" selected="">Select category</option>
+                                <option value="1">Gaming</option>
+                                <option value="2">Development</option>
+                                <option value="3">Cars</option>
+                            </select>
+                            
+                            <div class="">
+                                <label for="id_subscribers">Subscribers:</label>
+                                <input class="max-sm:w-auto w-full text-black px-2 py-1 rounded-md border-opacity-100 focus:outline-dashed outline-2 outline-cyan-500/50" type="number" name="subscribers" value="0" required id="id_subscribers" min="0">
+                            </div>
+                            
+                            <div class="">
+                                <label for="id_channel_pub_time">Channel publish time:</label>
+                                <input class="max-sm:w-auto w-full text-black px-2 py-1 rounded-md border-opacity-100 focus:outline-dashed outline-2 outline-cyan-500/50" type="datetime-local" name="channel_pub_time" value="Channel Publish time" id="id_channel_pub_time" required>
+                                <input type="hidden" name="initial-channel_pub_time" value="2023-05-02 20:30:04" id="initial-id_channel_pub_time">
+                            </div>
+
+                            <div class="">
+                                <label for="id_video_pub_time">Video publish time:</label>
+                                <input class="max-sm:w-auto w-full text-black px-2 py-1 rounded-md border-opacity-100 focus:outline-dashed outline-2 outline-cyan-500/50" type="datetime-local" name="video_pub_time" value="" id="id_video_pub_time" required>
+                                <input type="hidden" name="initial-video_pub_time" value="2023-05-02 20:30:04" id="initial-id_video_pub_time">
+                            </div>
+
+                            <div class="">
+                                <label for="id_videos">Videos:</label>
+                                <input class="max-sm:w-auto w-full text-black px-2 py-1 rounded-md border-opacity-100 focus:outline-dashed outline-2 outline-cyan-500/50" type="number" name="videos" value="0" id="id_videos" required min="0">
+                            </div>
+
+                            <div class="">
+                                <label for="id_views">Views:</label>
+                                <input class="max-sm:w-auto w-full text-black px-2 py-1 rounded-md border-opacity-100 focus:outline-dashed outline-2 outline-cyan-500/50" type="number" name="views" value="0" id="id_views" required min="0">
+                            </div>
+
+                            <div>
+                                <input class="mt-2 border-0 px-2 py-1 rounded-md bg-opacity-80 border-opacity-80 border-green-400 bg-green-400 shadow-md shadow-green-400/50 duration-150 hover:shadow-xl hover:shadow-green-400/50 active:bg-opacity-100 cursor-pointer"
+                                style="font-family: 'Nunito', sans-serif; font-family: 'Quicksand', sans-serif;" type="submit" value="Predict">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+
+{% block js %}
+    <script>
+        function showMobileNav()
+        {
+            var btn = document.getElementById("mobileNav");
+        if (window.getComputedStyle(btn).display === "none") {
+            btn.style.display = "flex";
+        } else {
+            btn.style.display = "none";
+            }
+        }
+
+        function messageDismiss()
+        {
+            var btn = document.getElementById("dismiss");
+            btn.style.top = "0"
+            btn.style.display = "none"
+        }
+
+        const inputDiv = document.querySelector(".input-div")
+        const input = document.querySelector("#id_thumb")
+        const output = document.querySelector("output")
+        let imagesArray = []
+
+        input.addEventListener("change", () => {
+            const files = input.files
+            for (let i = 0; i < files.length; i++) {
+                imagesArray.push(files[i])
+            }
+            displayImages()
+        })
+
+        inputDiv.addEventListener("drop", () => {
+            e.preventDefault()
+            const files = e.dataTransfer.files
+            for (let i = 0; i < files.length; i++) {
+                if (!files[i].type.match("image")) continue;
+                if (imagesArray.every(image => image.name !== files[i].name))
+                imagesArray.push(files[i])
+            }
+            displayImages()
+        })
+
+        function displayImages() {
+            let images = ""
+            imagesArray.forEach((image, index) => {
+                images += `<div class="image">
+                    <img src="${URL.createObjectURL(image)}" alt="image" style="max-height:200px">
+              </div>`
+            })
+            document.querySelector(".input-change").innerHTML = images
+        }
+
+        const data_in = document.querySelector("#additional_data");
+        h = window.getComputedStyle(data_in, null).getPropertyValue('height');
+        console.log(h);
+        const dnd = document.querySelector("#drag_and_drop");
+        dnd.style.height = h;
+    </script>
+{% endblock %}

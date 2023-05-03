@@ -1,0 +1,30 @@
+Make index.html
+
+npm init -y
+
+npm install -D tailwindcss postcss autoprefixer vite
+
+npx tailwindcss init -p
+
+Create a css file "input.css", and link it to your index.html
+	@tailwind base;
+	@tailwind components;
+	@tailwind utilities;
+
+In tailwind.config.js replace content:[] with content:["*"]
+
+Add "start":"vite" to your scripts in package.json
+
+npm run start
+
+GG!
+
+
+
+
+
+For production:
+
+Add "build":"vite build" to your scrips in package.json
+
+npm run build

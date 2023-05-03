@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block title %}Login{% endblock %}
+{% load i18n %}
+{% load account socialaccount %}
+{% get_providers as socialaccount_providers %}
+{% load static %}
+
+{% block content %}
+
+{% block css %}
+{% endblock %}
+
+<p style="display: none;">
+  {% block bg %}{%static '/images/6.jpg' %}{% endblock %}
+</p>
+
+
+<div class="relative z-0 max-sm:max-md:px-2 px-4 pb-28 py-5" style="font-family: 'Quicksand', sans-serif;">
+  <div class="max-sm:max-md:w-[80%] w-1/2 mx-auto py-28 max-sm:max-md:px-2 text-slate-300">
+      <div class="rounded-2xl top-0 flex flex-col px-3 py-2 justify-between h-full w-full bg-cyan-700 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-10 items-center shadow-cyan-300/20 shadow-[0px_0px_20px_10px_#5a67d8]">
+          <h1 class="text-center w-full font-bold text-2xl mt-4">Sign in!</h1>
+
+        <!-- Form error messages -->
+        {% for key, value in form.errors.items %}
+          <h2 class="bg-rose-800 rounded-lg py-1 my-1 px-4 bg-opacity-70 text-center max-w-max text-md pt-2">{% if key != '__all__' %}{{ key }}{% endif %}{{ value }}</h2>
+        {% endfor %}
+
+        <!-- Messages -->
+        {% if messages %}
+        {% for message in messages %}
+          {% if 'error' in message.tags %}
+          <h2 class="bg-rose-800 rounded-lg py-1 my-1 px-3 bg-opacity-70 text-center max-w-max text-md pt-2"><i class="fa-solid fa-triangle-exclamation"></i> {{ message }}</h2>
+          {% elif 'success' in message.success %}
+          <h2 class="bg-green-800 rounded-lg py-1 my-1 px-3 bg-opacity-70 text-center max-w-max text-md pt-2"><i class="fa-solid fa-circle-check"></i> {{ message }}</h2>
+          {% endif %}
+        {% endfor %}
+        {% endif %}
+
+          <h2 class="text-center w-full text-md pt-2">You make great videos. Don't let people scroll past it!</h2>
+          <form class="w-1/2 flex flex-col" action="" method="post">
+
+              {% csrf_token %}
+
+              <input name="login" autocomplete="email" id="id_login" class="px-4 py-1 my-4 rounded-md bg-transparent border-slate-400 border-2 active:shadow-md duration-500" type="email" placeholder="e-mail">
+
+              <input name="password" autocomplete="current-password" id="id_password" class="px-4 py-1 mb-4 rounded-md bg-transparent border-slate-400 border-2 duration-500" type="password" placeholder="password">
+              
+              <div class="pb-1 w-full text-center align-middle">
+                  <input type="checkbox" name="remember" id="id_remember"> Remember me
+              </div>
+              
+
+              <a href="{% url 'account_reset_password' %}" class="my-0 text-center" style="font-family: 'Nunito', sans-serif; font-family: 'Quicksand', sans-serif;"><i class="fa-solid fa-skull"></i> Forgot Password?</a>
+
+              <div class="my-2 items-center flex flex-row w-full">
+
+                  <button type="submit" class="mr-1 w-1/2 px-4 py-[0.14rem] rounded-md bg-opacity-0 bg-red-400 border-opacity-80 border-[2.125px] border-red-400 duration-150  active:bg-opacity-50 text-center" style="font-family: 'Nunito', sans-serif; font-family: 'Quicksand', sans-serif;"><i class="fa-solid fa-user"></i> Login</button>
+
+                  <a href="{{ signup_url }}" class="ml-1 w-1/2 text-center border-0 px-4 py-1 rounded-md bg-opacity-80 border-opacity-80 border-red-400 bg-red-400 duration-150 hover:shadow-red-400/50 hover:shadow-[0px_0px_10px_5px_#5a67d8] active:bg-opacity-100" style="font-family: 'Nunito', sans-serif; font-family: 'Quicksand', sans-serif;"><i class="fa-solid fa-user-plus"></i> Signup</a>
+
+              </div>
+
+          </form>
+
+          <a href="{% provider_login_url 'google' %}" class="w-1/2 text-center border-0 px-2 py-1 mt-2 mb-5 rounded-md bg-opacity-80 border-opacity-80 border-blue-400 bg-blue-400 duration-150 hover:shadow-blue-400/50 hover:shadow-[0px_0px_10px_5px_#5a67d8] active:bg-opacity-100" style="font-family: 'Nunito', sans-serif; font-family: 'Quicksand', sans-serif;"><i class="fa-brands fa-google"></i> Login/Signup with Google
+          </a>
+      </div>
+  </div>
+</div>
+
+{% endblock %}

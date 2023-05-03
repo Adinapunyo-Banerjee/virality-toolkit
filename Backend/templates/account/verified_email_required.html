@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Login{% endblock %}
+{% load i18n %}
+{% load account socialaccount %}
+{% get_providers as socialaccount_providers %}
+{% load static %}
+
+{% block content %}
+
+{% block css %}
+{% endblock %}
+
+<p style="display: none;">
+  {% block bg %}{%static '/images/6.jpg' %}{% endblock %}
+</p>
+
+
+<div class="relative z-0 max-sm:max-md:px-2 px-4 pb-28 py-5" style="font-family: 'Quicksand', sans-serif;">
+  <div class="max-sm:max-md:w-[80%] w-1/2 mx-auto py-28 max-sm:max-md:px-2 text-slate-300">
+      <div class="rounded-2xl top-0 flex flex-col px-3 py-2 justify-between h-full w-full bg-cyan-700 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-10 items-center shadow-cyan-300/20 shadow-[0px_0px_20px_10px_#5a67d8]">
+            <h1 class="text-center w-full font-bold text-2xl mt-4">Verify your Email!</h1>
+            <h2 class="text-center w-full text-md pt-2">You need to have a verified e-mail to view this page! We have sent an e-mail to you for verification. Please click on the link inside that e-mail. If you do not see the verification e-mail in your main inbox, check your spam folder. Otherwise contact me if you do not receive it within a few minutes.</h2>
+      </div>
+  </div>
+</div>
+
+{% endblock %}

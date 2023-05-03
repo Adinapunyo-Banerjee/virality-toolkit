@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block title %}Confirm Email{% endblock %}
+{% load i18n %}
+{% load account socialaccount %}
+{% get_providers as socialaccount_providers %}
+{% load static %}
+
+{% block content %}
+
+{% block css %}
+{% endblock %}
+
+<p style="display: none;">
+  {% block bg %}{%static '/images/6.jpg' %}{% endblock %}
+</p>
+
+
+<div class="relative z-0 max-sm:max-md:px-2 px-4 pb-28 py-5" style="font-family: 'Quicksand', sans-serif;">
+  <div class="max-sm:max-md:w-[80%] w-1/2 mx-auto py-28 max-sm:max-md:px-2 text-slate-300">
+      <div class="rounded-2xl top-0 flex flex-col px-3 py-2 justify-between h-full w-full bg-cyan-700 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-10 items-center shadow-cyan-300/20 shadow-[0px_0px_20px_10px_#5a67d8]">
+          <h1 class="text-center w-full font-bold text-2xl mt-4">{% if confirmation %}Confirm E-mail{% else %}Oops!{% endif %}</h1>
+
+        <!-- Form error messages -->
+        {% for key, value in form.errors.items %}
+          <h2 class="bg-rose-800 rounded-lg py-1 my-1 px-4 bg-opacity-70 text-center max-w-max text-md pt-2">{% if key != '__all__' %}{{ key }}{% endif %}{{ value }}</h2>
+        {% endfor %}
+
+        <!-- Messages -->
+        {% if messages %}
+        {% for message in messages %}
+          {% if 'error' in message.tags %}
+          <h2 class="bg-rose-800 rounded-lg py-1 my-1 px-3 bg-opacity-70 text-center max-w-max text-md pt-2"><i class="fa-solid fa-triangle-exclamation"></i> {{ message }}</h2>
+          {% elif 'success' in message.success %}
+          <h2 class="bg-green-800 rounded-lg py-1 my-1 px-3 bg-opacity-70 text-center max-w-max text-md pt-2"><i class="fa-solid fa-circle-check"></i> {{ message }}</h2>
+          {% endif %}
+        {% endfor %}
+        {% endif %}
+
+    {% if confirmation %}
+        {% user_display confirmation.email_address.user as user_display %}
+          <h2 class="text-center w-full text-md pt-2">{% blocktrans with confirmation.email_address.email as email %}Please confirm that {{ email }} is an e-mail address for user {{ user_display }}.{% endblocktrans %}</h2>
+          <form class="w-1/2 flex flex-col" action="{% url 'account_confirm_email' confirmation.key %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="w-full text-center border-0 px-4 py-1 rounded-md bg-opacity-80 border-opacity-80 border-red-400 bg-red-400 duration-150 hover:shadow-red-400/50 hover:shadow-[0px_0px_10px_5px_#5a67d8] active:bg-opacity-100" style="font-family: 'Nunito', sans-serif; font-family: 'Quicksand', sans-serif; margin-top: 1rem;"><i class="fa-solid fa-user-plus"></i> Confirm</button>
+          </form>
+      </div>
+
+    {% else %}
+        <h2 class="text-center w-full text-md pt-2">{% blocktrans %}This e-mail confirmation link expired or is invalid.{% endblocktrans %}</h2>
+        <div class="my-2 items-center flex flex-row w-full">
+
+            <button type="submit" class="mr-1 w-1/2 px-4 py-[0.14rem] rounded-md bg-opacity-0 bg-red-400 border-opacity-80 border-[2.125px] border-red-400 duration-150  active:bg-opacity-50 text-center" style="font-family: 'Nunito', sans-serif; font-family: 'Quicksand', sans-serif;"><i class="fa-solid fa-user"></i> Login</button>
+
+            <a href="{{ signup_url }}" class="ml-1 w-1/2 text-center border-0 px-4 py-1 rounded-md bg-opacity-80 border-opacity-80 border-red-400 bg-red-400 duration-150 hover:shadow-red-400/50 hover:shadow-[0px_0px_10px_5px_#5a67d8] active:bg-opacity-100" style="font-family: 'Nunito', sans-serif; font-family: 'Quicksand', sans-serif;"><i class="fa-solid fa-user-plus"></i> Signup</a>
+
+        </div>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}

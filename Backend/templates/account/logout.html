@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}Logout{% endblock %}
+{% load i18n %}
+{% load account socialaccount %}
+{% get_providers as socialaccount_providers %}
+{% load static %}
+
+{% block bg %}{%static '/images/6.jpg' %}{% endblock %}
+
+{% block content %}
+
+
+{% block css %}
+{% endblock %}
+
+
+<div class="relative z-0 max-sm:max-md:px-2 px-4 pb-28 py-5" style="font-family: 'Quicksand', sans-serif;">
+  <div class="max-sm:max-md:w-[80%] w-1/2 mx-auto py-28 max-sm:max-md:px-2 text-slate-300">
+      <div class="rounded-2xl top-0 flex flex-col px-3 py-2 justify-between h-full w-full bg-cyan-700 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-10 items-center shadow-cyan-300/20 shadow-[0px_0px_20px_10px_#5a67d8]">
+          <h1 class="text-center w-full font-bold text-2xl mt-4">Logout?</h1>
+
+        <!-- Form error messages -->
+        {% for key, value in form.errors.items %}
+          <h2 class="bg-rose-800 rounded-lg py-1 my-1 px-4 bg-opacity-70 text-center max-w-max text-md pt-2">{% if key != '__all__' %}{{ key }}{% endif %}{{ value }}</h2>
+        {% endfor %}
+
+        {% if user.is_authenticated %}
+            <h2 class="text-center w-full text-md pt-2">You sure wanna go?</h2>
+
+            <form class="w-1/2 flex flex-col" action="/accounts/logout/" method="post">
+              {% csrf_token %}
+              <button type="submit" class="w-full text-center border-0 px-4 py-1 mt-2 mb-4 rounded-md bg-opacity-80 border-opacity-80 border-red-400 bg-red-400 duration-150 hover:shadow-red-400/50 hover:shadow-[0px_0px_10px_5px_#5a67d8] active:bg-opacity-100" style="font-family: 'Nunito', sans-serif; font-family: 'Quicksand', sans-serif;"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+            </form>
+        {% else %}
+            <h2 class="text-center w-full text-md pt-2">You are not logged in!</h2>
+            <a href="{{ login_url }}" class="ml-1 w-1/2 text-center border-0 px-4 py-1 rounded-md bg-opacity-80 border-opacity-80 border-red-400 bg-red-400 duration-150 hover:shadow-red-400/50 hover:shadow-[0px_0px_10px_5px_#5a67d8] active:bg-opacity-100" style="font-family: 'Nunito', sans-serif; font-family: 'Quicksand', sans-serif;"><i class="fa-solid fa-user-plus"></i> Signup</a>
+        {% endif %}
+      </div>
+  </div>
+</div>
+
+{% endblock %}

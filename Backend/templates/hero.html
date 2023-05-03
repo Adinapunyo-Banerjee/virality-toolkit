@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %} Virality Toolkit {% endblock %}
+{% block css %}<link rel="stylesheet" href="{%static '/css/hero.css' %}">{% endblock %}
+
+{% block bg %}{%static '/images/yt3.jpg' %}{% endblock %}
+
+{% block content %}
+<div class="flex flex-col gap-[20vh]">
+    <div class="rounded-2xl top-0 flex flex-col max-sm:max-md:px-2 py-5 justify-between h-full w-full bg-cyan-700 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-10 items-center shadow-cyan-300/20 shadow-[0px_0px_10px_5px_#5a67d8]" style="margin-top: 10vh;">
+        <div class="max-sm:max-md:flex-col flex flex-row items-center">
+            <div class="w-1/2 px-12 max-sm:max-md:px-7 flex flex-col gap-2 max-sm:max-md:w-[95%]">
+                <div class="max-sm:max-md:hidden items-center flex flex-row gap-2 text-white">
+                    <img src="{%static '/logo.svg' %}" style="width:20px;height:20px;">
+                    <a href="#"
+                        style="font-family: 'Nunito', sans-serif; font-family: 'Quicksand', sans-serif;">Virality
+                        Toolkit</a>
+                </div>
+                <div class="text-5xl max-sm:max-md:text-4xl font-bold">
+                    Rate your thumbnail before you upload using an AI!
+                </div>
+                <div class="text-xl">
+                    Virality Toolkit (Beta) rates your YouTube thumbnail for engagement and views!
+                </div>
+                <div class="mt-3 mb-3">
+                    <a href="/accounts/login"
+                        class="text-center border-0 px-3 py-2 rounded-md bg-opacity-80 border-opacity-80 border-green-400 bg-green-400 shadow-md shadow-green-400/50 duration-150 hover:shadow-xl hover:shadow-green-400/50 active:bg-opacity-100"
+                        style="font-family: 'Nunito', sans-serif; font-family: 'Quicksand', sans-serif;"><i
+                            class="fa-solid fa-rocket"></i> Get Started!</a>
+                </div>
+            </div>
+            <div class="max-sm:max-md:hidden w-1/2 pr-7">
+                <img class="rounded-md opacity-90" src="{%static '/images/yt5.jfif' %}" alt="" srcset="">
+            </div>
+        </div>
+    </div>
+
+    <div
+        class="max-sm:max-md:px-2 rounded-2xl top-0 flex flex-col px-10 py-5 justify-between h-full w-full bg-cyan-700 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-10 items-center shadow-cyan-300/20 shadow-[0px_0px_10px_5px_#5a67d8]">
+        <div class="max-sm:max-md:flex-col flex flex-row items-center">
+            <div class="w-1/2 max-sm:max-md:hidden">
+                <img class="rounded-md opacity-80" src="{%static '/images/yt4.jfif' %}" alt="" srcset="">
+            </div>
+            <div class="max-sm:max-md:w-[95%] w-1/2 px-7 flex flex-col gap-2">
+                <div class="text-5xl max-sm:max-md:text-4xl font-bold">
+                    Trained on over 25 thousand thumbnails.
+                </div>
+                <div class="text-xl">
+                    The first of many tools to come. Welcome to the first release of Virality Toolkit! Expectations are high, experimentations are on...
+                </div>
+                <div class="mt-3 mb-3">
+                    <a href="/accounts/login"
+                        class="text-center border-0 px-3 py-2 rounded-md bg-opacity-80 border-opacity-80 border-blue-400 bg-blue-400 shadow-md shadow-blue-400/50 duration-150 hover:shadow-xl hover:shadow-blue-400/50 active:bg-opacity-100"
+                        style="font-family: 'Nunito', sans-serif; font-family: 'Quicksand', sans-serif;"><i
+                            class="fa-solid fa-circle-play"></i> Take a tour!</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div
+        class="max-sm:max-md:px-2 mb-[20vh] rounded-2xl top-0 flex flex-col px-10 py-5 justify-between h-full w-full bg-cyan-700 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-10 items-center shadow-cyan-300/20 shadow-[0px_0px_10px_5px_#5a67d8]">
+        <div class="max-sm:max-md:flex-col flex flex-row items-center">
+            <div class="w-1/2 max-sm:max-md:w-[95%] px-7 flex flex-col gap-2">
+                <div class="text-5xl max-sm:max-md:text-4xl font-bold">
+                    CTR is the king!
+                </div>
+                <div class="text-xl">
+                    In this new era of youtube, the Click Through Rate makes the difference between Virality and
+                    Oblivion. Let us help you get the views you need...
+                </div>
+                <div class="mt-3 mb-3">
+                    <a href="/accounts/login"
+                        class="text-center border-0 px-3 py-2 rounded-md bg-opacity-80 border-opacity-80 border-green-400 bg-green-400 shadow-md shadow-green-400/50 duration-150 hover:shadow-xl hover:shadow-green-400/50 active:bg-opacity-100"
+                        style="font-family: 'Nunito', sans-serif; font-family: 'Quicksand', sans-serif;"><i
+                            class="fa-solid fa-rocket"></i> Get Started!</a>
+                </div>
+            </div>
+            <div class="w-1/2 max-sm:max-md:hidden">
+                <img class="rounded-md opacity-80" src="{%static '/images/yt6.jfif' %}" alt="" srcset="">
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
