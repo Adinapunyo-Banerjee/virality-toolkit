@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %} Virality Tools {% endblock %}
+{% block css %}<link rel="stylesheet" href="{%static '/css/tools.css' %}">{% endblock %}
+
+{% block bg %}{%static '/images/yt3.jpg' %}{% endblock %}
+
+
+{% block content %}
+
+<div class="flex flex-col gap-[20vh]" style="margin-top: 3rem; margin-bottom: 3rem;">
+    <div
+        class="rounded-2xl top-0 flex flex-col max-sm:max-md:px-2 py-5 justify-between h-full w-full bg-cyan-700 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-10 items-center shadow-cyan-300/20 shadow-[0px_0px_10px_5px_#5a67d8]">
+
+        <div class="flex flex-col w-1/2 px-6">
+            <div class="text-center text-4xl pb-4">
+                Virality Tools
+            </div>
+            <div class="border-t-2 pt-3 pb-5 border-dashed">
+                <a href="{% url 'quick_predict' %}" class="font-bold text-xl">Quick predict</a>
+                <div class="text-md">Quickly predict performance of a thumbnail on today's date given Channel creation
+                    date and Video upload date</div>
+                <div><strong>Dataset Size:</strong> 25,000 thumbnails</div>
+                <div><strong>Token cost:</strong> 1</div>
+                <div>
+                    <strong>Rating:</strong> <i class="fa-solid fa-star"></i> <i class="fa-regular fa-star"></i> <i
+                        class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i> <i
+                        class="fa-regular fa-star"></i>
+                </div>
+            </div>
+
+            <div class="border-t-2 pt-3 pb-5 border-dashed">
+                <a href="#" class="font-bold text-xl">10 day prediction</a>
+                <div class="text-md">Quickly predict performance of a thumbnail on today's date given Channel creation
+                    date and Video upload date</div>
+                <div><strong>Dataset Size:</strong> 25,000 thumbnails</div>
+                <div><strong>Token cost:</strong> 1</div>
+                <div>
+                    <strong>Rating:</strong> <i class="fa-solid fa-star"></i> <i
+                        class="fa-solid fa-star-half-stroke"></i> <i class="fa-regular fa-star"></i> <i
+                        class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

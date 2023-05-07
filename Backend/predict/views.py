@@ -11,10 +11,13 @@ CATEGORY_CHOICES = {
     3 : 'Cars'
 }
 
+def tools(request):
+    return render(request, 'tools.html', {})
+
 def quick_predict(request):
     if request.user.is_authenticated == False:                          # No user
         messages.error(request, "You need to login first!")
-        return redirect("/")
+        return redirect("/accounts/login/")
 
     if request.method == 'GET':                                         # Simple GET
         context_dict = {'txt': 'Prediction Model 1'}
@@ -32,6 +35,7 @@ def quick_predict(request):
                 messages.error(request, "You are out of tokens!")
                 return render(request, 'quick_predict.html', {})
             request.user.tokenBalance -= QUICK_PREDICT_COST             # Step 1
+            request.user.totalPredictions += 1
             request.user.save()                                         # Step 2 - This is how you change user attributes!
 
             f_instance = form.save(commit=False)                        # Step 1

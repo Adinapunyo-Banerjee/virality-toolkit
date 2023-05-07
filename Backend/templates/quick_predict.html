@@ -16,7 +16,7 @@
                         <h1 class="text-3xl">Thumbnail performance AI - Quick Predict</h1>
                         <div class="py-2 text-center">Quickly predict performance of a thumbnail on a particular day.</div>
                     </div>
-                    <form class="flex max-sm:max-md:flex-col flex-row items-center px-16 py-6 gap-3 h-96 max-sm:max-md:py-2" action="/predict/" method="post" enctype="multipart/form-data">
+                    <form class="flex max-sm:max-md:flex-col flex-row items-center px-16 py-6 gap-3 h-96 max-sm:max-md:py-2" action="/tools/quick_predict/" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
 
                         <div class="max-sm:max-md:py-5 input-div border-2 border-dashed rounded-md flex justify-center w-full h-[200px] align-center text-center relative" id="drag_and_drop">

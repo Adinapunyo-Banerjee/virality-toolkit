@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="shortcut icon" href="/assets/logo-95c1f948.svg" type="image/x-icon">
+
+    <!-- Base CSS -->
+    <!-- <link rel="stylesheet" href="dist/assets/base.css"> -->
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&family=Quicksand:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- Fontawesome -->
+    <script src="https://kit.fontawesome.com/5c2d098959.js" crossorigin="anonymous"></script>
+
+    <!-- Additional CSS -->
+    
+  <link rel="stylesheet" href="/assets/index-7d073f3a.css">
+</head>
+
+<body background="files/yt3.jpg"
+    style="background-repeat: no-repeat; background-size: cover; background-position: center;" class="bg-slate-900">
+
+    <nav class="text-md sticky top-0 flex flex-row gap-3 px-3 py-2 justify-between shadow-md h-full w-full bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-0 items-center"
+        style=" z-index: 99999;">
+        <div class="sm:hidden text-white px-2" onclick="showMobileNav()">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <div class="max-sm:max-md:items-center items-center flex flex-row gap-2 text-white">
+            <img src="/assets/logo-95c1f948.svg" style="width:20px;height:20px;">
+            <a href="#" style="font-family: 'Nunito', sans-serif; font-family: 'Quicksand', sans-serif;">Virality
+                Toolkit</a>
+        </div>
+        <div class="font-sans flex flex-row gap-3 items-center text-white">
+            <a href="#" class="max-sm:max-md:hidden"
+                style="font-family: 'Nunito', sans-serif; font-family: 'Quicksand', sans-serif;">Home</a>
+            <a href="#" class="max-sm:max-md:hidden"
+                style="font-family: 'Nunito', sans-serif; font-family: 'Quicksand', sans-serif;">Try</a>
+            <a href="#" class="max-sm:max-md:hidden"
+                style="font-family: 'Nunito', sans-serif; font-family: 'Quicksand', sans-serif;">About</a>
+
+            <a href="#"
+                class=" border-0 px-2 py-1 rounded-md bg-opacity-80 border-opacity-80 border-red-400 bg-red-400 shadow-md shadow-red-400/50 duration-150 hover:shadow-xl hover:shadow-red-400/50 active:bg-opacity-100"
+                style="font-family: 'Nunito', sans-serif; font-family: 'Quicksand', sans-serif;"><i
+                    class="fa-solid fa-user"></i> Login</a>
+
+            <a href="#" class="px-[0.55rem] py-1 rounded-full bg-opacity-0 bg-red-400 border-opacity-80 border-[2.125px] border-red-400 duration-150 active:bg-opacity-50" style="font-family: 'Nunito', sans-serif; font-family: 'Quicksand', sans-serif;" onclick="showLoginStat()"><i
+                class="fa-solid fa-user"></i></a>
+            <div class="flex-col flex text-md text-white top-14 right-3 px-3 py-2 rounded-md bg-clip-padding bg-slate-900 text-opacity-80 gap-2 border-opacity-70 bg-opacity-70 shadow-[0px_0px_10px_5px_#5a67d8] shadow-cyan-300/20"
+                style="position: absolute; display: none;" id="loginStat">
+                <div href="#" style="font-family: 'Nunito', sans-serif; font-family: 'Quicksand', sans-serif;"><strong><i class="fa-solid fa-user-check"></i> adinapunyo2003@gmail.com</strong></div>
+                <a href="#" style="font-family: 'Nunito', sans-serif; font-family: 'Quicksand', sans-serif;"><i class="fa-solid fa-coins"></i> Tokens (95/100)</a>
+                <a href="#" style="font-family: 'Nunito', sans-serif; font-family: 'Quicksand', sans-serif;"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+            </div>
+
+        </div>
+
+
+        <div class="items-center text-sm text-white top-14 px-3 py-2 rounded-md bg-clip-padding bg-slate-900 text-opacity-80 gap-4 border-opacity-70 bg-opacity-70 shadow-[0px_0px_10px_5px_#5a67d8] shadow-cyan-300/20"
+            style="position: absolute; display: none;" id="mobileNav">
+            <a href="#" style="font-family: 'Nunito', sans-serif; font-family: 'Quicksand', sans-serif;">Home</a>
+            <a href="#" style="font-family: 'Nunito', sans-serif; font-family: 'Quicksand', sans-serif;">Try</a>
+            <a href="#" style="font-family: 'Nunito', sans-serif; font-family: 'Quicksand', sans-serif;">About</a>
+        </div>
+    </nav>
+
+
+
+    <div class="max-sm:max-md:px-5 px-16 py-5 mt-7 text-white" style="font-family: 'Quicksand', sans-serif;">
+
+        <div class="flex flex-col gap-[20vh]">
+            <div
+                class="rounded-2xl top-0 flex flex-col max-sm:max-md:px-2 py-5 justify-between h-full w-full bg-cyan-700 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-10 items-center shadow-cyan-300/20 shadow-[0px_0px_10px_5px_#5a67d8]">
+
+
+                <div class="flex flex-col w-1/2 px-6">
+                    <div class="text-center text-4xl pb-4">
+                        Virality Tools
+                    </div>
+                    <div class="border-t-2 pt-3 pb-5 border-dashed">
+                        <a href="#" class="font-bold text-xl">Quick predict</a>
+                        <div class="text-md">Quickly predict performance of a thumbnail on today's date given Channel creation date and Video upload date</div>
+                        <div><strong>Dataset Size:</strong> 25,000 thumbnails</div>
+                        <div><strong>Token cost:</strong> 1</div>
+                        <div>
+                            <strong>Rating:</strong> <i class="fa-solid fa-star"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="border-t-2 pt-3 pb-5 border-dashed">
+                        <a href="#" class="font-bold text-xl">10 day prediction</a>
+                        <div class="text-md">Quickly predict performance of a thumbnail on today's date given Channel creation date and Video upload date</div>
+                        <div><strong>Dataset Size:</strong> 25,000 thumbnails</div>
+                        <div><strong>Token cost:</strong> 1</div>
+                        <div>
+                            <strong>Rating:</strong> <i class="fa-solid fa-star"></i> <i class="fa-solid fa-star-half-stroke"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+
+    <footer class="bg-neutral-900 text-white text-center py-6 relative bottom-0 left-0 w-full text-sm">
+        <div>
+            Copyright© Thumbnail Project
+        </div>
+        <div>
+            <a
+                href="https://www.freepik.com/free-photo/content-service-internet-online-editorial-connection_1235345.htm#query=Phone%20with%20youtube%20on%20the%20screen%20while%20an%20person%20using%20a%20computer&position=3&from_view=search&track=ais">Hero
+                Image by ijeab</a> on Freepik
+        </div>
+    </footer>
+
+    <script>
+        function showLoginStat() {
+            var btn = document.getElementById("loginStat");
+            if (window.getComputedStyle(btn).display === "none") {
+                btn.style.display = "flex";
+            } else {
+                btn.style.display = "none";
+            }
+        }
+
+        function showMobileNav() {
+            var btn = document.getElementById("mobileNav");
+            if (window.getComputedStyle(btn).display === "none") {
+                btn.style.display = "flex";
+            } else {
+                btn.style.display = "none";
+            }
+        }
+
+        function messageDismiss() {
+            var btn = document.getElementById("dismiss");
+            btn.style.top = "0"
+            btn.style.display = "none"
+        }
+    </script>
+
+    <script>
+        const inputDiv = document.querySelector(".input-div")
+        const input = document.querySelector("#id_thumb")
+        const output = document.querySelector("output")
+        let imagesArray = []
+
+        input.addEventListener("change", () => {
+            const files = input.files
+            for (let i = 0; i < files.length; i++) {
+                imagesArray.push(files[i])
+            }
+            displayImages()
+        })
+
+        inputDiv.addEventListener("drop", () => {
+            e.preventDefault()
+            const files = e.dataTransfer.files
+            for (let i = 0; i < files.length; i++) {
+                if (!files[i].type.match("image")) continue;
+                if (imagesArray.every(image => image.name !== files[i].name))
+                    imagesArray.push(files[i])
+            }
+            displayImages()
+        })
+
+        function displayImages() {
+            let images = ""
+            imagesArray.forEach((image, index) => {
+                images += `<div class="image">
+                    <img src="${URL.createObjectURL(image)}" alt="image" style="max-height:200px">
+              </div>`
+            })
+            document.querySelector(".input-change").innerHTML = images
+        }
+    </script>
+
+    <script>
+        const data_in = document.querySelector("#additional_data");
+        h = window.getComputedStyle(data_in, null).getPropertyValue('height');
+        console.log(h);
+        const dnd = document.querySelector("#drag_and_drop");
+        dnd.style.height = h;
+    </script>
+</body>
+
+</html>

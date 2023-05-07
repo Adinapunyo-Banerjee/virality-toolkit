@@ -25,17 +25,6 @@
           <h2 class="bg-rose-800 rounded-lg py-1 my-1 px-4 bg-opacity-70 text-center max-w-max text-md pt-2">{% if key != '__all__' %}{{ key }}{% endif %}{{ value }}</h2>
         {% endfor %}
 
-        <!-- Messages -->
-        {% if messages %}
-        {% for message in messages %}
-          {% if 'error' in message.tags %}
-          <h2 class="bg-rose-800 rounded-lg py-1 my-1 px-3 bg-opacity-70 text-center max-w-max text-md pt-2"><i class="fa-solid fa-triangle-exclamation"></i> {{ message }}</h2>
-          {% elif 'success' in message.success %}
-          <h2 class="bg-green-800 rounded-lg py-1 my-1 px-3 bg-opacity-70 text-center max-w-max text-md pt-2"><i class="fa-solid fa-circle-check"></i> {{ message }}</h2>
-          {% endif %}
-        {% endfor %}
-        {% endif %}
-
           <h2 class="text-center w-full text-md pt-2">You make great videos. Don't let people scroll past it!</h2>
           <form class="w-1/2 flex flex-col" action="" method="post">
 
