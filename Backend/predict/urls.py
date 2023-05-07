@@ -7,5 +7,5 @@ from django.conf import settings
 from django.conf.urls.static import static 
 
 urlpatterns = [
-    path('', views.predict1, name='predict1'),
+    path('', views.quick_predict, name='quick_predict'),
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

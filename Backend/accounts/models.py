@@ -32,8 +32,9 @@ class UserManager(BaseUserManager):
 class User(AbstractUser):
     username = None
     email = models.EmailField(unique=True)
-    mobile = models.CharField(max_length=14)
+    mobile = models.CharField(max_length=14, null=True, blank=True)
     isPremium = models.BooleanField(default=False)
+    isPromotable = models.BooleanField(default=True)
     PremiumBuyDate = models.DateTimeField(null=True, blank=True)
     PremiumExpiryDate = models.DateTimeField(null=True, blank=True)
     totalPredictions = models.IntegerField(default=0)

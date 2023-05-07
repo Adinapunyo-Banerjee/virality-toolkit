@@ -62,7 +62,8 @@
             <div class="flex-col flex text-md text-white top-14 px-3 py-2 rounded-md bg-clip-padding bg-slate-900 text-opacity-80 gap-2 border-opacity-70 bg-opacity-70 shadow-[0px_0px_10px_5px_#5a67d8] shadow-cyan-300/20"
                 style="position: absolute; display: none; right: 0.75rem;;" id="loginStat">
                 <div href="#" style="font-family: 'Nunito', sans-serif; font-family: 'Quicksand', sans-serif;"><strong><i class="fa-solid fa-user-check"></i> {% if user.first_name == ""%}{{ user.email }}{% else %}{{ user.first_name }}{% endif %}</strong></div>
-                <a href="#" style="font-family: 'Nunito', sans-serif; font-family: 'Quicksand', sans-serif;"><i class="fa-solid fa-coins"></i> Tokens (95/100)</a>
+                <a href="#" style="font-family: 'Nunito', sans-serif; font-family: 'Quicksand', sans-serif;"><i class="fa-solid fa-coins"></i> Tokens ({{ user.tokenBalance }}/100)</a>
+                <a href="#" style="font-family: 'Nunito', sans-serif; font-family: 'Quicksand', sans-serif;"><i class="fa-solid fa-envelope"></i> Newsletter</a>
                 <a href="/accounts/logout" style="font-family: 'Nunito', sans-serif; font-family: 'Quicksand', sans-serif;"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
             </div>
             {% else %}
