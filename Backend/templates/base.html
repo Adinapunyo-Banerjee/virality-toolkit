@@ -57,7 +57,14 @@
             <a href="#" class="max-sm:max-md:hidden" style="font-family: 'Nunito', sans-serif; font-family: 'Quicksand', sans-serif;">About</a>
 
             {% if user.is_authenticated %}
-                <a href="/accounts/logout" class="border px-2 py-1 rounded-md bg-opacity-0 bg-red-400 border-opacity-80 border-[2.125px] border-red-400 duration-150 active:bg-opacity-50" style="font-family: 'Nunito', sans-serif; font-family: 'Quicksand', sans-serif;"><i class="fa-solid fa-user-check"></i> {% if user.first_name == ""%}{{ user.email }}{% else %}{{ user.first_name }}{% endif %}</a>
+            <a href="#" class="px-[0.55rem] py-1 bg-opacity-0 bg-red-400 border-opacity-80 border-[2.125px] border-red-400 duration-150 active:bg-opacity-50" style="font-family: 'Nunito', sans-serif; font-family: 'Quicksand', sans-serif; border-radius: 9999px; padding-left: 0.55rem; padding-right: 0.55rem;" onclick="showLoginStat()"><i
+                class="fa-solid fa-user"></i></a>
+            <div class="flex-col flex text-md text-white top-14 px-3 py-2 rounded-md bg-clip-padding bg-slate-900 text-opacity-80 gap-2 border-opacity-70 bg-opacity-70 shadow-[0px_0px_10px_5px_#5a67d8] shadow-cyan-300/20"
+                style="position: absolute; display: none; right: 0.75rem;;" id="loginStat">
+                <div href="#" style="font-family: 'Nunito', sans-serif; font-family: 'Quicksand', sans-serif;"><strong><i class="fa-solid fa-user-check"></i> {% if user.first_name == ""%}{{ user.email }}{% else %}{{ user.first_name }}{% endif %}</strong></div>
+                <a href="#" style="font-family: 'Nunito', sans-serif; font-family: 'Quicksand', sans-serif;"><i class="fa-solid fa-coins"></i> Tokens (95/100)</a>
+                <a href="/accounts/logout" style="font-family: 'Nunito', sans-serif; font-family: 'Quicksand', sans-serif;"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+            </div>
             {% else %}
                 <a href="/accounts/login" class="border border-0 px-2 py-1 rounded-md bg-opacity-80 border-opacity-80 border-red-400 bg-red-400 shadow-md shadow-red-400/50 duration-150 hover:shadow-xl hover:shadow-red-400/50 active:bg-opacity-100" style="font-family: 'Nunito', sans-serif; font-family: 'Quicksand', sans-serif;"><i class="fa-solid fa-user"></i> Login</a>
             {% endif %}
@@ -91,6 +98,15 @@
     {% endblock %}
 
     <script>
+        function showLoginStat() {
+            var btn = document.getElementById("loginStat");
+            if (window.getComputedStyle(btn).display === "none") {
+                btn.style.display = "flex";
+            } else {
+                btn.style.display = "none";
+            }
+        }
+
         function showMobileNav()
         {
             var btn = document.getElementById("mobileNav");
