@@ -1,26 +1,21 @@
 import os
 import pickle
 import numpy as np
-import pandas as pd
 import tensorflow as tf
 from PIL import Image
-
+from datetime import datetime, timezone
 
 MODEL_DIR = '../../Predictions/'
 SCALAR_DIR = '../../Predictions/Model1/complements/'
-IMG_DIR = '../../Predictions/'
+IMG_DIR = 'media/prediction_model1'
 
-print(os.listdir(MODEL_DIR))
+# model = tf.keras.models.load_model(MODEL_DIR + 'final_model.h5')
+# stat_scaler = pickle.load(open(SCALAR_DIR + 'stats_scaler.pickle', 'rb'))
+# like_scaler = pickle.load(open(SCALAR_DIR + 'likes_scaler.pickle', 'rb'))
+# view_scaler = pickle.load(open(SCALAR_DIR + 'views_scaler.pickle', 'rb'))
 
-model = tf.keras.models.load_model(MODEL_DIR + 'final_model.h5')
-stat_scaler = pickle.load(open(SCALAR_DIR + 'stats_scaler.pickle', 'rb'))
-like_scaler = pickle.load(open(SCALAR_DIR + 'likes_scaler.pickle', 'rb'))
-view_scaler = pickle.load(open(SCALAR_DIR + 'views_scaler.pickle', 'rb'))
-
-stats = [17, 236887967, 847000, 268, 1099034621, 231187]
-
-def predict_output():
-    img = Image.open(IMG_DIR + 'wagtail.png')
+def quick_predict_script(stats, img_url):
+    img = Image.open(img_url)
     img = img.resize((150, 150))
     thumb = np.array(img, dtype=np.float32)/255
     img_to_predict = np.expand_dims(thumb, axis=0)
@@ -38,5 +33,4 @@ def predict_output():
     # print(view, like)
     return [view, like]
 
-ans = predict_output()
-print("Predicted views = ", ans[0][0][0], "| Predicted likes = ", ans[1][0][0],)
+# Views = ans[0][0][0], Likes = ans[1][0][0]
