@@ -27,6 +27,11 @@
     {% block css %}
     {% endblock %}
 
+    <!-- Loading additional styles -->
+    <style>
+    {% block style %}{% endblock %}
+    </style>
+
     <style>
         .green-msg:hover{
             -webkit-box-shadow: 0px 0px 27px -2px rgba(0,102,34,1);
@@ -42,7 +47,7 @@
     </style>
 
 </head>
-<body background="{% block bg %}{% endblock %}" style="background-repeat: no-repeat; background-size: cover; background-position: center;" class="bg-slate-900">
+<body background="{% block bg %}{% endblock %}" style="overflow-x:hidden; background-repeat: no-repeat; background-size: cover; background-position: center;" class="bg-slate-900">
     <nav class="text-md sticky top-0 flex flex-row gap-3 px-3 py-2 justify-between shadow-md h-full w-full bg-white-900 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-0 items-center" style="z-index: 99999;">
         <div class="sm:hidden text-white px-2" onclick="showMobileNav()">
             <i class="fa-solid fa-bars"></i>

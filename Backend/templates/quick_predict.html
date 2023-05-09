@@ -4,6 +4,49 @@
 {% block title %} Thumbnail AI {% endblock %}
 {% block css %}<link rel="stylesheet" href="{%static '/css/quick_predict.css' %}">{% endblock %}
 
+{% block style %}
+.loader,
+.loader:after {
+  border-radius: 50%;
+  width: 10em;
+  height: 10em;
+}
+.loader {
+  font-size: 10px;
+  position: relative;
+  text-indent: -9999em;
+  border-top: 1.1em solid rgba(255, 255, 255, 0.2);
+  border-right: 1.1em solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1.1em solid rgba(255, 255, 255, 0.2);
+  border-left: 1.1em solid #ffffff;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation: load8 1.1s infinite linear;
+  animation: load8 1.1s infinite linear;
+}
+@-webkit-keyframes load8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes load8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+{% endblock %}
+
 {% block bg %}{%static '/images/yt3.jpg' %}{% endblock %}
 
 
@@ -14,7 +57,7 @@
                 <div class="flex flex-col items-center gap-10 py-10 max-sm:max-md:gap-1">
                     <div style="padding-bottom: 0.5rem;">
                         <h1 class="text-3xl">Thumbnail performance AI - Quick Predict</h1>
-                        <div class="py-2 text-center">Quickly predict performance of a thumbnail on a particular day.</div>
+                        <div class="py-2 text-center">Quickly predict performance of a thumbnail today.</div>
                     </div>
                     <form class="flex max-sm:max-md:flex-col flex-row items-center px-16 py-6 gap-3 h-96 max-sm:max-md:py-2" action="/tools/quick_predict/" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
@@ -63,9 +106,10 @@
                                 Token Cost: <strong>1</strong>
                             </div>
 
-                            <div>
-                                <input class="mt-2 border-0 px-2 py-1 rounded-md bg-opacity-80 border-opacity-80 border-green-400 bg-green-400 shadow-md shadow-green-400/50 duration-150 hover:shadow-xl hover:shadow-green-400/50 active:bg-opacity-100 cursor-pointer"
+                            <div class="items-center" style="display: flex; flex-direction: row; gap: 10px;">
+                                <input onclick="showLoader()" id="submit" class="mt-2 border-0 px-2 py-1 rounded-md bg-opacity-80 border-opacity-80 border-green-400 bg-green-400 shadow-md shadow-green-400/50 duration-150 hover:shadow-xl hover:shadow-green-400/50 active:bg-opacity-100 cursor-pointer"
                                 style="font-family: 'Nunito', sans-serif; font-family: 'Quicksand', sans-serif;" type="submit" value="Predict">
+                                <div id="loader" class="loader mt-2" style="height: 5px; width: 5px; display: none;">Loading...</div>
                             </div>
                         </div>
                     </form>
@@ -79,6 +123,13 @@
 
 {% block js %}
     <script>
+
+        function showLoader()
+        {
+            var btn = document.getElementById("loader");
+            btn.style.display = "inline";
+        }
+
         function showMobileNav()
         {
             var btn = document.getElementById("mobileNav");
